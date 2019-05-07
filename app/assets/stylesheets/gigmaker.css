@@ -1,0 +1,26 @@
+.menu-text {
+  font-size: 1.5rem;
+}
+
+.card-divider {
+  display: block;
+  font-family: sans-serif;
+  color: white;
+  font-weight: bold;
+}
+
+.tiny-field {
+  width: 4rem;
+}
+
+.short-field {
+  width: 12rem;
+}
+
+.med-field {
+  width: 18rem;
+}
+
+.close {
+  line-height: .5;
+}

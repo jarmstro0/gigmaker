@@ -1,0 +1,59 @@
+<div class="grid-x white_out">
+  <div class="cell small-2"></div>
+  <div class="cell small-4">
+
+<br/>
+<h4>Set Up A Venue</h4>
+
+<%= form_for @venue do |f| %>
+
+  <div class="field short-field">
+    <%= f.label "Venue Name" %>
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+
+  <div class="field med-field">
+    <%= f.label "Address" %>
+    <%= f.text_field :address_1, autofocus: true %>
+  </div>
+
+  <div class="field med-field">
+    <%= f.label "Address Line 2" %>
+    <%= f.text_field :address_2, autofocus: true %>
+  </div>
+
+  <div class="field med-field">
+    <%= f.label "City" %>
+    <%= f.text_field :city, autofocus: true %>
+  </div>
+
+  <div class="field tiny-field">
+    <%= f.label "State" %>
+    <%= f.text_field :state, autofocus: true %>
+    <%= f.label "Zip Code" %>
+    <%= f.text_field :zip, autofocus: true %>
+  </div>
+
+  <div class="field tiny-field">
+    <%= f.label "Capacity" %>
+    <%= f.text_field :capacity, autofocus: true %>
+  </div>
+
+  <div class="field short-field">
+    <%= f.label "How Loud is OK?" %>
+    <%= f.select(:noise_level,[
+      ['Quiet', 'Quiet'],
+      ['Reasonable', 'Reasonable'],
+      ['Loud', 'Loud']])  %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "All Done!" %>
+  </div>
+<% end %>
+
+</div>
+
+
+<div class="cell small-2"></div>
+</div>
