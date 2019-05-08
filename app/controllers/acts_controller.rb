@@ -11,9 +11,11 @@ class ActsController < ApplicationController
 
   def new
     @act = Act.new
+    @genres = Genrelut.all
   end
 
   def create
+    binding.pry
     new_act = Act.new(act_params)
     new_act.user_id = current_user.id
 

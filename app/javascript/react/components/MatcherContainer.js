@@ -1,22 +1,16 @@
 import React from 'react';
 
-import GigTile from './GigTile'
-import DatePicker from 'react-datepicker';
-import moment from 'moment';
-import 'react-datepicker/dist/react-datepicker.css';
-
-class HomeContainer extends React.Component {
+class MatcherContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      gigs: [],
-      date: new Date()
+      searcher: null,
+      matches: []
     }
-    this.handleChange = this.handleChange.bind(this)
   }
 
   componentDidMount() {
-    fetch(`/api/v1/gigs?date=${this.state.date}`)
+    fetch(`/api/v1/matcher`)
     .then(response => {
       if (response.ok) {
         return response;
@@ -28,50 +22,19 @@ class HomeContainer extends React.Component {
     })
     .then(response => response.json())
     .then(body => {
-      this.setState({ gigs: body })
+      this.setState({ matches: body.matches })
+      this.setState({ searcher: body.searcher })
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
-  handleChange(date) {
-    console.log(date)
-
-    this.setState({
-      startDate: date["_i"]
-    });
-    console.log(this.state.startDate)
-  }
-
-
   render(){
-    let gig_list = this.state.gigs.map((gig) => {
-
-        return (
-          <GigTile
-            key = {gig.id}
-            name = {gig.event_name}
-            act = {gig.act_name}
-            venue = {gig.venue_name}
-            name = {gig.event_name}
-            date = {gig.date}
-            time = {gig.time}
-            tix = {gig.tix_price}
-            photo = {gig.photo}
-          />
-        )
-      })
-
     return(
       <div className="grid-y medium-grid-frame">
     <div className="cell shrink header medium-cell-block-container">
       <div className="grid-x grid-padding-x">
         <div className="cell small-3">
-          <div className="short-field">
-          <DatePicker
-          selected={moment(this.state.date)}
-          onChange={this.handleChange}
-          />
-          </div>
+        Hello 1
         </div>
         <div className="cell small-8">
           <p></p>
@@ -84,7 +47,7 @@ class HomeContainer extends React.Component {
         </div>
         <div className="cell medium-6 medium-cell-block-y">
           <h2>Upcoming Gigs</h2>
-          {gig_list}
+
         </div>
       </div>
     </div>
@@ -96,4 +59,4 @@ class HomeContainer extends React.Component {
   }
 }
 
-export default HomeContainer;
+export default MatcherContainer;

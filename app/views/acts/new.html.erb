@@ -48,6 +48,12 @@
   <div class="actions">
     <%= f.submit "All Done!" %>
   </div>
+
+  <div class="cell small-4">
+    <%= f.label "Genres" %>
+    <%= f.collection_check_boxes(:genres, @genres, :id, :genre_name) %>
+
+  <div>
 <% end %>
 
 </div>
