@@ -56,6 +56,7 @@ class HomeContainer extends React.Component {
             date = {gig.date}
             time = {gig.time}
             tix = {gig.tix_price}
+            photo = {gig.photo}
           />
         )
       })

@@ -32,7 +32,8 @@ class VenuesController < ApplicationController
   private
 
   def act_params
-    params.require(:venue).permit(:name, :address_1, :address_2, :city, :state, :zip, :capacity, :noise_level)
+    params.require(:venue).permit(:name, :address_1, :address_2, :city,
+      :profile_photo, :state, :zip, :capacity, :noise_level)
   end
 
   def authorize_user
