@@ -1,9 +1,10 @@
 class EventSerializer < ActiveModel::Serializer
-  attributes :id, :event_name, :act_name, :venue_name, :date, :time, :tix_price
+  attributes :id, :event_name, :act_name, :venue_name, :date, :time, :tix_price, :photo
 
   def date
     object.date.strftime("%B %e")
   end
+
 
   def event_name
     object.event_name.upcase
@@ -18,7 +19,11 @@ class EventSerializer < ActiveModel::Serializer
   end
 
   def act_name
-    "#{Act.where(id: object.venue_id)[0].name.upcase}"
+    "#{Act.where(id: object.act_id)[0].name.upcase}"
+  end
+
+  def photo
+    "#{Act.where(id: object.act_id)[0].profile_photo}"
   end
 
 end

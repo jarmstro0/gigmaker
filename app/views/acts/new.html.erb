@@ -40,6 +40,11 @@
     <%= f.text_field :travel_radius, autofocus: true %>
   </div>
 
+  <div class="field med-field">
+    <%= f.label "Add a Photo"%>
+    <%= f.file_field :profile_photo %>
+  </div>
+
   <div class="actions">
     <%= f.submit "All Done!" %>
   </div>

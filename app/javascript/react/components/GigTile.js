@@ -13,7 +13,7 @@ const GigTile = props => {
       <div className="card-divider text-center">
         <h3>{props.name}</h3>
       </div>
-      <img src="./public/3-singersongwriter-sheaffer.jpg"/>
+      <img src={props.photo}/>
       <div className="card-section text-center">
         <h3>{props.act}</h3>
         <h5>at {props.venue}</h5>
