@@ -24,3 +24,39 @@
 .close {
   line-height: .5;
 }
+
+.menu-text {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.top-bar-text {
+  font-size: 1.2rem;
+}
+
+.prop-box-right {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: right;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.prop-box {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: left;
+  width: 100%
+  padding: 1rem;
+  vertical-align: middle;
+  margin-top: 1rem;
+}
+
+.top-marg {
+  margin-top: 1rem;
+}
+
+.gm-banner {
+  color: white;
+  background-color: #FF7340;
+}

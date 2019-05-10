@@ -2,14 +2,14 @@ import React from 'react'
 import { Router, browserHistory, Route, IndexRoute } from 'react-router'
 
 import HomeContainer from './HomeContainer'
-import MatcherContainer from './MatcherContainer'
+import VenueContainer from './VenueContainer'
 
 export const App = (props) => {
   return (
     <div>
     <Router history={browserHistory}>
           <Route path="/" component={HomeContainer}/>
-          <Route path="/matcher" component={MatcherContainer}/>
+          <Route path="/matcher/venues" component={VenueContainer}/>
     </Router>
     </div>
   )

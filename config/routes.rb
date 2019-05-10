@@ -5,7 +5,10 @@ Rails.application.routes.draw do
 
   resources :venues, only: [:index, :show, :new, :create]
   resources :acts, only: [:index, :show, :new, :create]
-  resources :matcher, only: [:index, :show]
+  resources :matcher, only: [:index]
+
+  get 'matcher/acts', to: 'matcher#acts'
+  get 'matcher/venues', to: 'matcher#venues'
 
   namespace :api do
     namespace :v1 do

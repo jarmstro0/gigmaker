@@ -6,5 +6,5 @@ class Act < ApplicationRecord
   validates :noise_level, presence: true
   validates :user_id, presence: true
 
-  has_many :genres
+  has_many :actgenres
 end

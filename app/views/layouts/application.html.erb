@@ -26,14 +26,13 @@
         <div className = "logo">
           <li class="menu-text">GigMaker</li>
         </div>
-
-
-        <li><a href="/matcher">Matcher</a></li>
-
+        <div class="top-bar-text">
+          <li><a href="/matcher">Matcher</a></li>
+        </div>
       </ul>
     </div>
     <div class="top-bar-right">
-      <ul class="menu">
+      <ul class="menu top-bar-text">
         <%- if current_user -%>
         <li>
           <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
@@ -50,11 +49,17 @@
     </div>
   </div>
 
-  <%- flash.each do |key, value| -%>
-  <div class="flash flash-<%= key %>">
-    <%= value %>
-  </div>
-  <%- end -%>
+  <% if flash %>
+    <div class="grid-x">
+      <div class="cell">
+        <%- flash.each do |key, value| -%>
+        <div class="flash flash-<%= key %>">
+          <%= value %>
+        </div>
+        <%- end -%>
+      </div>
+    </div>
+  <% end %>
 
 <%= yield %>
 

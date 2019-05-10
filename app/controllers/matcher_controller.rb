@@ -2,10 +2,18 @@ class MatcherController < ApplicationController
   before_action :authorize_user
 
   def index
+    if current_user.is_act?
+      redirect_to '/matcher/venues'
+    else
+      redirect_to '/matcher/acts'
+    end
+  end
+
+  def acts
     render "static_views/index"
   end
 
-  def show
+  def venues  
     render "static_views/index"
   end
 

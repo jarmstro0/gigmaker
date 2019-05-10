@@ -1,63 +1,72 @@
-<div class="grid-x white_out">
-  <div class="cell small-2"></div>
+
+
+<div class="grid-x">
+  <div class="cell small-3"> </div>
   <div class="cell small-4">
-
-<br/>
-<h4>Set Up Your Act</h4>
-
-<%= form_for @act do |f| %>
-
-  <div class="field med-field">
-    <%= f.label "Act Name" %>
-    <%= f.text_field :name, autofocus: true %>
+    <br/>
+    <h4>Set Up Your Act</h4>
   </div>
-
-  <div class="field med-field">
-    <%= f.label "Your Tagline" %>
-    <%= f.text_field :tagline, autofocus: true %>
-  </div>
-
-  <div class="field med-field">
-    <%= f.label "A Not-too Brief Description" %>
-    <%= f.text_area :description, autofocus: true %>
-  </div>
-
-  <div class="field short-field">
-    <%= f.label "How Loud Do You Play?" %>
-    <%= f.select(:noise_level,[
-    ['Quiet', 'Quiet'],
-    ['Reasonable', 'Reasonable'],
-    ['Loud', 'Loud']])  %>
-  </div>
-
-  <div class="field tiny-field">
-    <%= f.label "Homebase Zip Code" %>
-    <%= f.text_field :home_zip, autofocus: true %>
-  </div>
-
-  <div class="field tiny-field">
-    <%= f.label "How Far Will You Travel?" %>
-    <%= f.text_field :travel_radius, autofocus: true %>
-  </div>
-
-  <div class="field med-field">
-    <%= f.label "Add a Photo"%>
-    <%= f.file_field :profile_photo %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "All Done!" %>
-  </div>
-
-  <div class="cell small-4">
-    <%= f.label "Genres" %>
-    <%= f.collection_check_boxes(:genres, @genres, :id, :genre_name) %>
-
-  <div>
-<% end %>
-
 </div>
 
+<div class="grid-x">
+  <div class="cell small-3"></div>
+  <div class="cell small-4">
+    <%= form_for @act do |f| %>
 
-<div class="cell small-2"></div>
+    <div class="field med-field">
+      <%= f.label "Act Name" %>
+      <%= f.text_field :name, autofocus: true %>
+    </div>
+
+    <div class="field med-field">
+      <%= f.label "Your Tagline" %>
+      <%= f.text_field :tagline, autofocus: true %>
+    </div>
+
+    <div class="field med-field">
+      <%= f.label "A Brief Description of Your Act" %>
+      <%= f.text_area :description, autofocus: true %>
+    </div>
+
+    <div class="field short-field">
+      <%= f.label "How Loud Do You Play?" %>
+      <%= f.select(:noise_level,[
+      ['Quiet', 'Quiet'],
+      ['Reasonable', 'Reasonable'],
+      ['Loud', 'Loud'],
+      ['11', '11']])  %>
+    </div>
+
+    <div class="field short-field">
+      <%= f.label "Home Zip Code" %>
+      <%= f.text_field :home_zip, autofocus: true %>
+    </div>
+
+    <div class="field short-field">
+      <%= f.label "How Far Will You Travel?" %>
+      <%= f.text_field :travel_radius, autofocus: true %>
+    </div>
+
+    <div class="field med-field">
+      <%= f.label "Add a Photo"%>
+      <%= f.file_field :profile_photo %>
+    </div>
+  </div>
+
+  <div class="cell small-5">
+    <%= f.label "Genres - pick all that apply" %>
+    <div>
+      <%= f.collection_check_boxes(:actgenres, Genrelut.all, :id, :genre_name) do |b| %>
+        <%= b.label(class: "check_box") do %>
+            <%= b.check_box(class: "check_box") %>
+            <%= b.object.genre_name %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "All Done!" %>
+    </div>
+  <% end %>
+  </div>
 </div>

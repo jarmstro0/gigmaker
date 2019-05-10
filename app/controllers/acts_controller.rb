@@ -15,12 +15,17 @@ class ActsController < ApplicationController
   end
 
   def create
-    binding.pry
     new_act = Act.new(act_params)
     new_act.user_id = current_user.id
 
     if new_act.save
-      flash[:notice] = "Act created successfully"
+      params[:act][:actgenres].each do |gen|
+        load_value = gen.to_i
+        if load_value > 0
+          Actgenre.create(act_id: new_act.id, genre_id: load_value)
+        end
+      end
+      flash.now[:notice] = "Act created successfully"
       redirect_to '/'
     else
       flash.now[:error] = new_ven.errors.full_messages.join(", ")

@@ -14,10 +14,17 @@ class VenuesController < ApplicationController
   end
 
   def create
-    new_ven = Venue.new(act_params)
+    new_ven = Venue.new(venue_params)
     new_ven.user_id = current_user.id
 
-    if !new_ven.save
+    if new_ven.save
+      params[:venue][:venuegenres].each do |gen|
+        load_value = gen.to_i
+        if load_value > 0
+          Venuegenre.create!(venue_id: new_ven.id, genre_id: load_value)
+        end
+      end
+    else
       flash.now[:error] = new_ven.errors.full_messages.join(", ")
       render action: :new
     end
@@ -31,7 +38,7 @@ class VenuesController < ApplicationController
 
   private
 
-  def act_params
+  def venue_params
     params.require(:venue).permit(:name, :address_1, :address_2, :city,
       :profile_photo, :state, :zip, :capacity, :noise_level)
   end
