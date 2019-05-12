@@ -30,7 +30,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
-  gem "dotenv-rails"
+
 end
 
 group :development do
@@ -61,4 +61,3 @@ gem 'active_model_serializers'
 gem 'faker'
 gem 'carrierwave'
 gem 'fog'
-gem 'font-awesome-rails'

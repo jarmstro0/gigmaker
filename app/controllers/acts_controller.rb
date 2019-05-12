@@ -37,7 +37,7 @@ class ActsController < ApplicationController
 
   def act_params
     params.require(:act).permit(:name, :tagline, :description, :travel_radius,
-      :profile_photo, :home_zip, :noise_level)
+      :profile_photo, :home_zip, :noise_level, :media_1, :media_2)
   end
 
   def authorize_user

@@ -1,20 +1,23 @@
 import React from 'react';
 
 import CalendarTile from './CalendarTile'
+import GenreTile from './GenreTile'
 
 class VenueContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searcher: null,
-      searcherType: null,
+      searcher: {},
       matches: [],
-      selected: null
+      selected: null,
+      date: new Date().getDate()
     }
+    this.clickDown = this.clickDown.bind(this)
+    this.clickUp = this.clickUp.bind(this)
   }
 
   componentDidMount() {
-    fetch(`/api/v1/matcher`)
+    fetch(`/api/v1/matcher/venues?date=${this.state.date}`)
     .then(response => {
       if (response.ok) {
         return response;
@@ -27,35 +30,62 @@ class VenueContainer extends React.Component {
     .then(response => response.json())
     .then(body => {
       this.setState({
-        matches: body.matches,
-        searcher: body.searcher[0],
-        searcherType: body.searcher_type,
-        selected: 0 })
+        matches: body.venuematch,
+        searcher: body.act_search[0],
+        selected: 0
+      })
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
+  clickDown() {
+    if (this.state.selected > 0) {
+      this.setState({selected: this.state.selected - 1})
+    }
+  };
+
+  clickUp() {
+    if ((this.state.selected + 1) < this.state.matches.length) {
+      this.setState({selected: this.state.selected + 1})
+    }
+  };
 
   render(){
-    let name, photo, volume, tag, desc
+    let name, photo, volume, city, state
+    let capacity, genTiles, genres
 
+    let displayed = this.state.matches[this.state.selected]
     if (this.state.selected !== null) {
-      name = this.state.matches[this.state.selected].name
-      photo = this.state.matches[this.state.selected].profile_photo
-      volume = this.state.matches[this.state.selected].noise_level
-    }
-    else {
-      name = ''
-      photo = ''
-      volume = ''
+      name = displayed.name
+      photo = displayed.profile_photo.url
+      volume = displayed.noise_level
+      city = displayed.city
+      state = displayed.state
+      capacity = displayed.capacity
+      genres = displayed.genres
+
+      if (genres.length > 0) {
+        genTiles = genres.map ((genre) => {
+          return (
+            <GenreTile
+            key = {genre}
+            name = {genre}
+            class = {""} />
+          )
+        })
+      }
     }
 
     return(
     <span>
-          <div className="grid-x grid-padding-y">
-            <div className="cell small-6 gm-banner"></div>
-            <div className="cell small-6 gm-banner">
-              <h3>{name}</h3>
+          <div className="grid-x gm-banner">
+            <div className="cell small-4"></div>
+            <div className="cell small-1">
+              <i onClick={this.clickDown} className="fas fa-caret-square-left fa-3x"></i>
+            </div>
+            <div className="cell small-3"></div>
+            <div className="cell small-1">
+              <i onClick={this.clickUp} className="fas fa-caret-square-right fa-3x"></i>
             </div>
           </div>
 
@@ -64,44 +94,31 @@ class VenueContainer extends React.Component {
               <CalendarTile />
             </div>
             <div className="cell small-6">
-              <img src={photo} />
+              <img className="matcher-pix" src={photo} />
             </div>
           </div>
 
           <div className="grid-x grid-padding-x">
             <div className="cell small-4">
               <div className="prop-box-right">
-                Your Sound Level:
+                <p>Sound Level:</p>
+                <p>Capacity:</p>
+                Genres:
               </div>
           </div>
           <div className="cell small-3">
             <div className="prop-box">
-              {volume}
+              <p>{volume}</p>
+              <p>{capacity}</p>
+              {genTiles}
             </div>
           </div>
           <div className="cell small-5 top-marg" >
-            <h5> Band tagline here </h5>
+            <h4> {name} </h4>
+            <p>{city}, {state}</p>
+            <iframe width="95%" height="300" frameBorder="0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJ8ShmOD9344kRVUhqSUgKP-E&key=AIzaSyCTd8b9XL4AdrKB7bWqoBK1E1pr2dzP4jE" allowFullScreen></iframe>
           </div>
         </div>
-
-        <div className="grid-x grid-padding-x">
-          <div className="cell small-4">
-            <div className="prop-box-right">
-              Your Genres:
-            </div>
-        </div>
-        <div className="cell small-3">
-          <div className="prop-box">
-            Genres:
-          </div>
-        </div>
-        <div className="cell small-5 top-marg" >
-          <p> Band description here sdljsd ksdlsdlk sdl ksd lsdlk sdlk sdlk sdl ksdl ksdl klaselkoie lsk lkd </p>
-
-          <iframe width="95%" height="150" scrolling="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/346120807&color=%23192c24&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
-          <iframe width="95%" height="150" scrolling="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/346120802&color=%23192c24&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
-        </div>
-      </div>
     </span>
     )
   }

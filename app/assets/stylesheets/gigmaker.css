@@ -36,7 +36,6 @@
 
 .prop-box-right {
   font-size: 1.5rem;
-  font-weight: bold;
   text-align: right;
   width: 100%;
   margin-top: 1rem;
@@ -44,7 +43,6 @@
 
 .prop-box {
   font-size: 1.5rem;
-  font-weight: bold;
   text-align: left;
   width: 100%
   padding: 1rem;
@@ -59,4 +57,18 @@
 .gm-banner {
   color: white;
   background-color: #FF7340;
+}
+
+.matcher-pix {
+  height: 290px;
+  width: auto;
+}
+
+.gen-red {
+  background-color: #A1340C;
+  color: white;
+}
+
+.gen-green {
+  background-color: #24EDC5;
 }

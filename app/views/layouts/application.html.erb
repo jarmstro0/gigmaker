@@ -16,6 +16,7 @@
   <%= csrf_meta_tags %>
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
 </head>
 
@@ -27,7 +28,12 @@
           <li class="menu-text">GigMaker</li>
         </div>
         <div class="top-bar-text">
+          <li><a href="/acts">Browse Acts</a></li>
+          <% if user_signed_in? %>
+          <% if current_user.is_host? || current_user.is_act? %>
           <li><a href="/matcher">Matcher</a></li>
+          <% end %>
+          <% end %>
         </div>
       </ul>
     </div>

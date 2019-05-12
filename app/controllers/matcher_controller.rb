@@ -13,13 +13,17 @@ class MatcherController < ApplicationController
     render "static_views/index"
   end
 
-  def venues  
+  def venues
     render "static_views/index"
   end
 
   def authorize_user
-    if !current_user.is_act && !current_user.is_host
-      raise ActionController::RoutingError.new("You Must Be a Host or Performer to Use the Matcher")
+    if user_signed_in?
+      if !current_user.is_act && !current_user.is_host
+        raise ActionController::RoutingError.new("You Must Be a Host or Act to Use the Matcher")
+      end
+    else
+      raise ActionController::RoutingError.new("You Must Be Signed In to Use the Matcher")
     end
   end
 
