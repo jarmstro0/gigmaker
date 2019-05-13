@@ -1,7 +1,9 @@
 import React from 'react';
+import moment from 'moment'
 
 import CalendarTile from './CalendarTile'
 import PropTile from './PropTile'
+
 
 class VenueContainer extends React.Component {
   constructor(props) {
@@ -10,14 +12,19 @@ class VenueContainer extends React.Component {
       searcher: {},
       matches: [],
       selected: null,
-      date: new Date().getDate()
+      date: moment().format("YYYY-MM-DD")
     }
     this.clickDown = this.clickDown.bind(this)
     this.clickUp = this.clickUp.bind(this)
   }
 
   componentDidMount() {
-    fetch(`/api/v1/matcher/venues?date=${this.state.date}`)
+    console.log("mount")
+    fetchActs(this.state.date)
+  }
+
+  fetchActs(fetchDate) {
+    fetch(`/api/v1/matcher/venues?date=${fetchDate}`)
     .then(response => {
       if (response.ok) {
         return response;
@@ -51,6 +58,7 @@ class VenueContainer extends React.Component {
   };
 
   render(){
+    console.log("render")
     let name, photo, volume, city, state
     let capacity, genTiles, genres
 
@@ -68,10 +76,10 @@ class VenueContainer extends React.Component {
                   class = {dispClass} />
 
       if (genres.length > 0) {
-        genTiles = genres.map ((genre) => {
+        genTiles = genres.map ((genre, index) => {
           return (
             <PropTile
-            key = {genre}
+            key = {index}
             name = {genre}
             class = {""} />
           )

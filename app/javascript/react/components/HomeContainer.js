@@ -11,13 +11,21 @@ class HomeContainer extends React.Component {
     super(props);
     this.state = {
       gigs: [],
-      date: moment().format()
+      date: moment().format("YYYY-MM-DD")
     }
-    this.handleChange = this.handleChange.bind(this)
+    this.onDateChange = this.onDateChange.bind(this)
+    this.fetchData = this.fetchData.bind(this)
   }
 
   componentDidMount() {
-    fetch(`/api/v1/gigs?date=${this.state.date}`)
+    this.fetchData(this.state.date)
+    console.log("did mount")
+  }
+
+  fetchData(fetchDate) {
+    console.log("fetch")
+    console.log(fetchDate)
+    fetch(`/api/v1/gigs?date=${fetchDate}`)
     .then(response => {
       if (response.ok) {
         return response;
@@ -34,19 +42,20 @@ class HomeContainer extends React.Component {
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
-  handleChange(date) {
-    console.log(date)
-
+  onDateChange(event) {
+    let new_date = event.target.value
     this.setState({
-      startDate: date["_i"]
+      date: new_date
     });
-    console.log(this.state.startDate)
+    console.log("date change pre-fetch")
+    this.fetchData(new_date)
   }
 
-
   render(){
+    console.log("render")
+    console.log(this.state.date)
     let gig_list = this.state.gigs.map((gig) => {
-
+      console.log("state valid")
         return (
           <GigTile
             key = {gig.id}
@@ -64,32 +73,31 @@ class HomeContainer extends React.Component {
 
     return(
       <div className="grid-y medium-grid-frame">
-    <div className="cell shrink header medium-cell-block-container">
-      <div className="grid-x grid-padding-x">
-        <div className="cell small-3">
-          <div className="short-field">
-            <DateTimeField />
+        <div className="cell shrink header medium-cell-block-container">
+          <div className="grid-x grid-padding-x">
+            <div className="cell small-3">
+              <div className="short-field">
+                <DateTimeField date={ this.state.date} handleChangeMethod={ this.onDateChange} />
+              </div>
+            </div>
+            <div className="cell small-8">
+              <p></p>
+            </div>
           </div>
         </div>
-        <div className="cell small-8">
-          <p></p>
+        <div className="cell medium-auto medium-cell-block-container">
+          <div className="grid-x grid-padding-x">
+            <div className="cell medium-3 medium-cell-block-y">
+            </div>
+            <div className="cell medium-6 medium-cell-block-y">
+              <h2>Today's Gigs</h2> {gig_list}
+            </div>
+          </div>
+        </div>
+        <div className="cell shrink footer">
+          <h3>Here's my footer</h3>
         </div>
       </div>
-    </div>
-    <div className="cell medium-auto medium-cell-block-container">
-      <div className="grid-x grid-padding-x">
-        <div className="cell medium-3 medium-cell-block-y">
-        </div>
-        <div className="cell medium-6 medium-cell-block-y">
-          <h2>Today's Gigs</h2>
-          {gig_list}
-        </div>
-      </div>
-    </div>
-    <div className="cell shrink footer">
-      <h3>Here's my footer</h3>
-    </div>
-  </div>
     )
   }
 }

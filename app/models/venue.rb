@@ -11,4 +11,6 @@ class Venue < ApplicationRecord
   validates :user_id, presence: true
 
   has_many :venuegenres
+  has_many :events
+  
 end

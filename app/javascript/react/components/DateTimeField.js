@@ -7,7 +7,8 @@ const DateTimeField = props => {
       <input
       name={props.name}
       type='date'
-      value={moment()}
+      value={props.date}
+      placeholder = {props.date}
       onChange={props.handleChangeMethod}
       />
     </label>

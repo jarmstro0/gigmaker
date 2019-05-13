@@ -78,3 +78,13 @@
 .card {
   max-width: 600px;
 }
+
+.black-back {
+  background-color: black;
+}
+
+.card-media {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}

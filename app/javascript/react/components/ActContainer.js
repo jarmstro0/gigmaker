@@ -12,7 +12,7 @@ class ActContainer extends React.Component {
       searcher: {},
       matches: [],
       selected: null,
-      date: moment().format("MM/DD/YYYY")
+      date: moment().format("YYYY-MM-DD")
     }
     this.clickDown = this.clickDown.bind(this)
     this.clickUp = this.clickUp.bind(this)
@@ -57,6 +57,9 @@ class ActContainer extends React.Component {
     let genTiles, state, capacity, genres
     let medOne, medTwo, songOne, songTwo
 
+    let mediaWidth = "95%"
+    let mediaHeight = "150"
+
     let displayed = this.state.matches[this.state.selected]
     if (this.state.selected !== null) {
       name = displayed.name
@@ -74,28 +77,32 @@ class ActContainer extends React.Component {
       let dispClass
       let searchGenres = this.state.searcher.genres
       if (genres.length > 0) {
-        genTiles = genres.map ((genre) => {
+        genTiles = genres.map ((genre, index) => {
           if (searchGenres.includes(genre)) {
             dispClass = "gen-green"
           } else {
             dispClass = "gen-red"
           }
 
-
           return (
             <PropTile
-            key = {genre}
+            key = {index}
             name = {genre}
             class = {dispClass} />
           )
         })
 
          if (medOne !== "") {
-          songOne = <MediaTile source = {medOne} />
+          songOne = <MediaTile
+          source = {medOne}
+          width = {mediaWidth}
+          height = {mediaHeight} />
         }
 
          if (medTwo !== "") {
-          songTwo = <MediaTile source = {medTwo} />
+          songTwo = <MediaTile source = {medTwo}
+          width = {mediaWidth}
+          height = {mediaHeight} />
         }
       }
     }

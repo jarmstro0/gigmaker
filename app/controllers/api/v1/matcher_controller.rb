@@ -10,8 +10,8 @@ class Api::V1::MatcherController < ApplicationController
   end
 
   def acts
-      binding.pry
-      actmatch = Act.all
+      actmatch = Act.joins(:events).where.not(events: {date: params[:date]}).distinct
+      # binding.pry
       venue_search = Venue.where(user_id: current_user.id)
       render json: {
         venue_search: ActiveModel::Serializer::CollectionSerializer.new(venue_search, serializer: VenueSearchSerializer),
