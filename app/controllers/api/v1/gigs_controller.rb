@@ -1,7 +1,7 @@
 class Api::V1::GigsController < ApplicationController
 
 def index
-  @events = Event.all.order(:date)
+  @events = Event.where(date: params[:date])
   render json: @events
 end
 

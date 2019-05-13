@@ -1,7 +1,8 @@
 import React from 'react';
+import moment from 'moment'
 
 import CalendarTile from './CalendarTile'
-import GenreTile from './GenreTile'
+import PropTile from './PropTile'
 import MediaTile from './MediaTile'
 
 class ActContainer extends React.Component {
@@ -11,7 +12,7 @@ class ActContainer extends React.Component {
       searcher: {},
       matches: [],
       selected: null,
-      date: new Date().getDate()
+      date: moment().format("MM/DD/YYYY")
     }
     this.clickDown = this.clickDown.bind(this)
     this.clickUp = this.clickUp.bind(this)
@@ -60,11 +61,14 @@ class ActContainer extends React.Component {
     if (this.state.selected !== null) {
       name = displayed.name
       photo = displayed.profile_photo.url
-      volume = displayed.noise_level
       tag = displayed.tagline
       medOne = displayed.media_1
       medTwo = displayed.media_2
       desc = displayed.description
+
+      volume = <PropTile
+                  name = {displayed.noise_level}
+                  class = {dispClass} />
 
       genres = displayed.genres
       let dispClass
@@ -79,7 +83,7 @@ class ActContainer extends React.Component {
 
 
           return (
-            <GenreTile
+            <PropTile
             key = {genre}
             name = {genre}
             class = {dispClass} />
@@ -131,7 +135,6 @@ class ActContainer extends React.Component {
                 <p>{volume}</p>
               </div>
                 {genTiles}
-
             </div>
             <div className="cell small-5 top-marg" >
               <h4> {name} </h4>

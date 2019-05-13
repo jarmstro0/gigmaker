@@ -1,7 +1,7 @@
 import React from 'react';
 
 import CalendarTile from './CalendarTile'
-import GenreTile from './GenreTile'
+import PropTile from './PropTile'
 
 class VenueContainer extends React.Component {
   constructor(props) {
@@ -58,16 +58,19 @@ class VenueContainer extends React.Component {
     if (this.state.selected !== null) {
       name = displayed.name
       photo = displayed.profile_photo.url
-      volume = displayed.noise_level
       city = displayed.city
       state = displayed.state
       capacity = displayed.capacity
       genres = displayed.genres
 
+      volume = <PropTile
+                  name = {displayed.noise_level}
+                  class = {dispClass} />
+
       if (genres.length > 0) {
         genTiles = genres.map ((genre) => {
           return (
-            <GenreTile
+            <PropTile
             key = {genre}
             name = {genre}
             class = {""} />
@@ -101,17 +104,17 @@ class VenueContainer extends React.Component {
           <div className="grid-x grid-padding-x">
             <div className="cell small-4">
               <div className="prop-box-right">
-                <p>Sound Level:</p>
                 <p>Capacity:</p>
+                <p>Sound Level:</p>
                 Genres:
               </div>
           </div>
           <div className="cell small-3">
             <div className="prop-box">
-              <p>{volume}</p>
               <p>{capacity}</p>
-              {genTiles}
+              <p>{volume}</p>
             </div>
+              {genTiles}
           </div>
           <div className="cell small-5 top-marg" >
             <h4> {name} </h4>

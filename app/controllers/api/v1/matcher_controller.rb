@@ -10,6 +10,7 @@ class Api::V1::MatcherController < ApplicationController
   end
 
   def acts
+      binding.pry
       actmatch = Act.all
       venue_search = Venue.where(user_id: current_user.id)
       render json: {

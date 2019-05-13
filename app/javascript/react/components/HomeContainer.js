@@ -1,5 +1,6 @@
 import React from 'react';
 
+import DateTimeField from './DateTimeField'
 import GigTile from './GigTile'
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
@@ -10,7 +11,7 @@ class HomeContainer extends React.Component {
     super(props);
     this.state = {
       gigs: [],
-      date: new Date()
+      date: moment().format()
     }
     this.handleChange = this.handleChange.bind(this)
   }
@@ -67,10 +68,7 @@ class HomeContainer extends React.Component {
       <div className="grid-x grid-padding-x">
         <div className="cell small-3">
           <div className="short-field">
-          <DatePicker
-          selected={moment(this.state.date)}
-          onChange={this.handleChange}
-          />
+            <DateTimeField />
           </div>
         </div>
         <div className="cell small-8">
@@ -83,7 +81,7 @@ class HomeContainer extends React.Component {
         <div className="cell medium-3 medium-cell-block-y">
         </div>
         <div className="cell medium-6 medium-cell-block-y">
-          <h2>Upcoming Gigs</h2>
+          <h2>Today's Gigs</h2>
           {gig_list}
         </div>
       </div>

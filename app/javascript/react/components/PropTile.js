@@ -1,6 +1,6 @@
 import React from 'react'
 
-const GenreTile = props => {
+const PropTile = props => {
   return(
     <div className="gen-red">
     <span className="prop-box"><p>{props.name}</p></span>
@@ -8,4 +8,4 @@ const GenreTile = props => {
   )
 }
 
-export default GenreTile;
+export default PropTile;
