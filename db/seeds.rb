@@ -27,21 +27,11 @@ end
 Act.create(
 name: "D Money, Smoothie, and Shifty",
 tagline: "CT is in the hizzle!",
-description: "Musical thugs who come up from Connecticut to invade your quiet beach community and deflower your ears with a dope sound. We Mainely prefer to play DownEast.",
+description: "Musical thugs who come up from Connecticut to invade your quiet beach community and deflower your ears with a dope sound. We mainely prefer to play DownEast, like in Paradise City.",
 home_zip: "06101",
 travel_radius: "250",
 noise_level: "11",
 user_id: 8
-)
-
-Act.create(
-name: "The Thamesmen",
-tagline: "Late 60s British Psychedelia",
-description: "Imagine that Spinal Tap had its roots in a swinging skiffle band. That is the Thamesmen in a nutshell. Flower suits, bowl haircuts, a sitar and a song called Gimme Some Money - what more do you need to know?",
-home_zip: "02543",
-travel_radius: "150",
-noise_level: "Quiet",
-user_id: 1
 )
 
 Act.create(
@@ -52,6 +42,16 @@ home_zip: "16501",
 travel_radius: "400",
 noise_level: "Quiet",
 user_id: 2
+)
+
+Act.create(
+name: "The Thamesmen",
+tagline: "Late 60s British Psychedelia",
+description: "The band that dares to ask the musical question - 'What if Spinal Tap was born as a swinging skiffle band?' Flower suits, bowl haircuts, a sitar and a song called Gimme Some Money - what more do you need to know?",
+home_zip: "02543",
+travel_radius: "150",
+noise_level: "Quiet",
+user_id: 1
 )
 
 Act.create(
@@ -106,7 +106,7 @@ user_id: 7
 
 Act.create(
 name: "The Shaggs",
-tagline: "Our Father made us do it",
+tagline: "Daddy made us do it",
 description: "We were just a bunch of kids when our Father had a vision that predicted our rise to musical stardom.  Rolling Stone has described us as 'sounding like lobotomized von Trapp Family singers' and Terry Adams of NRBQ compared our music to that of Ornette Coleman.",
 home_zip: "03044",
 travel_radius: "75",
@@ -139,34 +139,146 @@ to_make.times do
     is_host: true
   )
 
-  house_names = ["Hizzle", "Garage", "Joint", "Crib"]
-  name_select = house_names[Faker::Number.between(0, 3)]
-
-  zip_core = Faker::Number.between(2122, 2543)
-  zip = "0"+zip_core.to_s
-
-  noise = ["Quiet", "Reasonable", "Loud", "11"]
-  noise_select = noise[Faker::Number.between(0, 3)]
-
-  venue = Venue.create(
-    user_id: user.id,
-    name: "#{user.first_name}'s #{name_select}",
-    address_1: "#{Faker::Address.street_address}",
-    city: "#{Faker::Address.city}",
-    state: "MA",
-    zip: zip,
-    capacity: Faker::Number.between(1, 8)*5,
-    noise_level: noise_select
-  )
+  # house_names = ["Hizzle", "Garage", "Joint", "Crib"]
+  # name_select = house_names[Faker::Number.between(0, 3)]
+  #
+  # zip_core = Faker::Number.between(2122, 2543)
+  # zip = "0"+zip_core.to_s
+  #
+  # noise = ["Quiet", "Reasonable", "Loud", "11"]
+  # noise_select = noise[Faker::Number.between(0, 3)]
+  #
+  # venue = Venue.create(
+  #   user_id: user.id,
+  #   name: "#{user.first_name}'s #{name_select}",
+  #   address_1: "#{Faker::Address.street_address}",
+  #   city: "#{Faker::Address.city}",
+  #   state: "MA",
+  #   zip: zip,
+  #   capacity: Faker::Number.between(1, 8)*5,
+  #   noise_level: noise_select
+  # )
 
 end
 
-100.times do
+
+Venue.create(
+  name: "John's Hizzang",
+  address_1: "86 Oxford St",
+  city:  "Cambridge",
+  state:  "MA",
+  zip:  "02138",
+  capacity: Faker::Number.between(1, 8)*5,
+  noise_level: "11",
+  user_id: 11
+)
+
+Venue.create(
+  name: "Scout's Garage",
+  address_1: "60 Glen Rd",
+  city:  "Brookline",
+  state:  "MA",
+  zip:  "02445",
+  capacity: Faker::Number.between(1, 8)*5,
+  noise_level: "11",
+  user_id: 12
+)
+
+Venue.create(
+  name: "Stately Wayne Manor",
+  address_1: "60 Quissett Ave",
+  city:  "Woods Hole",
+  state:  "MA",
+  zip:  "02543",
+  capacity: Faker::Number.between(1, 8)*5,
+  noise_level: "Quiet",
+  user_id: 13
+)
+
+Venue.create(
+  name: "Earl's Garage",
+  address_1: "13 Harrison St",
+  city:  "Somerville",
+  state:  "MA",
+  zip:  "02143",
+  capacity: Faker::Number.between(1, 8)*5,
+  noise_level: "Loud",
+  user_id: 14
+)
+
+Venue.create(
+  name: "Chris' Crib",
+  address_1: "91 Prentiss St",
+  city:  "Cambridge",
+  state:  "MA",
+  zip:  "02140",
+  capacity: Faker::Number.between(1, 8)*5,
+  noise_level: "Moderate",
+  user_id: 15
+)
+
+Venue.create(
+  name: "Kweiliegh's House",
+  address_1: "120 Oxford St",
+  city:  "Cambridge",
+  state:  "MA",
+  zip:  "02140",
+  capacity: Faker::Number.between(1, 8)*5,
+  noise_level: "Moderate",
+  user_id: 16
+)
+
+Venue.create(
+  name: "The Abbey",
+  address_1: "1755 Massachusetts Ave",
+  city:  "Cambridge",
+  state:  "MA",
+  zip:  "02140",
+  capacity: Faker::Number.between(1, 8)*5,
+  noise_level: "Quiet",
+  user_id: 17
+)
+
+Venue.create(
+  name: "Danya's Dungeon",
+  address_1: "88 Waltham St",
+  city:  "Boston",
+  state:  "MA",
+  zip:  "02118",
+  capacity: Faker::Number.between(1, 8)*5,
+  noise_level: "Moderate",
+  user_id: 18
+)
+
+Venue.create(
+  name: "7Deck7",
+  address_1: "77 Summer St",
+  city:  "Boston",
+  state:  "MA",
+  zip:  "02111",
+  capacity: Faker::Number.between(1, 8)*5,
+  noise_level: "11",
+  user_id: 19
+)
+
+Venue.create(
+  name: "Argosy Gallery",
+  address_1: "110 Main St",
+  city:  "Bar Harbor",
+  state:  "ME",
+  zip:  "04609",
+  capacity: Faker::Number.between(1, 8)*5,
+  noise_level: "11",
+  user_id: 20
+)
+
+
+200.times do
   Event.create(
     act_id: Faker::Number.between(1, to_make),
     venue_id: Faker::Number.between(1, to_make),
     tix_price: Faker::Number.between(0, 8) * 5,
-    date: Faker::Date.forward(15),
+    date: Faker::Date.between(Date.today, 1.month.from_now),
     start_time: Faker::Time.forward(5, :evening),
     event_name: "#{Faker::Marketing.buzzwords}"
   )

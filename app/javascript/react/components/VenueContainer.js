@@ -3,6 +3,7 @@ import moment from 'moment'
 
 import CalendarTile from './CalendarTile'
 import PropTile from './PropTile'
+import MapContainer from './MapContainer'
 
 
 class VenueContainer extends React.Component {
@@ -12,15 +13,16 @@ class VenueContainer extends React.Component {
       searcher: {},
       matches: [],
       selected: null,
-      date: moment().format("YYYY-MM-DD")
+      date: moment().format("YYYY-MM-DD"),
     }
     this.clickDown = this.clickDown.bind(this)
     this.clickUp = this.clickUp.bind(this)
+    this.fetchActs = this.fetchActs.bind(this)
   }
 
   componentDidMount() {
     console.log("mount")
-    fetchActs(this.state.date)
+    this.fetchActs(this.state.date)
   }
 
   fetchActs(fetchDate) {
@@ -36,6 +38,8 @@ class VenueContainer extends React.Component {
     })
     .then(response => response.json())
     .then(body => {
+      console.log(body)
+
       this.setState({
         matches: body.venuematch,
         searcher: body.act_search[0],
@@ -60,7 +64,7 @@ class VenueContainer extends React.Component {
   render(){
     console.log("render")
     let name, photo, volume, city, state
-    let capacity, genTiles, genres
+    let capacity, genTiles, genres, showMap
 
     let displayed = this.state.matches[this.state.selected]
     if (this.state.selected !== null) {
@@ -71,9 +75,14 @@ class VenueContainer extends React.Component {
       capacity = displayed.capacity
       genres = displayed.genres
 
+      showMap = <MapContainer
+              lat = {displayed.lat}
+              long = {displayed.long}
+              />
+
       volume = <PropTile
                   name = {displayed.noise_level}
-                  class = {dispClass} />
+                  />
 
       if (genres.length > 0) {
         genTiles = genres.map ((genre, index) => {
@@ -117,18 +126,23 @@ class VenueContainer extends React.Component {
                 Genres:
               </div>
           </div>
+
           <div className="cell small-3">
             <div className="prop-box">
               <p>{capacity}</p>
               <p>{volume}</p>
-            </div>
               {genTiles}
-          </div>
+              </div>
+            </div>
+
           <div className="cell small-5 top-marg" >
             <h4> {name} </h4>
-            <p>{city}, {state}</p>
-            <iframe width="95%" height="300" frameBorder="0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJ8ShmOD9344kRVUhqSUgKP-E&key=AIzaSyCTd8b9XL4AdrKB7bWqoBK1E1pr2dzP4jE" allowFullScreen></iframe>
+            {city}, {state}
+            <div>
+              {showMap}
+            </div>
           </div>
+
         </div>
     </span>
     )

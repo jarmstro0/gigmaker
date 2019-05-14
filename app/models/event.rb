@@ -5,5 +5,13 @@ class Event < ApplicationRecord
   validates :venue_id, presence: true
 
   belongs_to :act
-  belongs_to :venue 
+  belongs_to :venue
+
+  def self.act_busy_on(date)
+    where(date: date).pluck(:act_id)
+  end
+
+  def self.venue_busy_on(date)
+    where(date: date).pluck(:venue_id)
+  end
 end

@@ -1,5 +1,5 @@
 class ActMatchSerializer < ActiveModel::Serializer
-  attributes :id, :name, :noise_level, :profile_photo, :genres, :media_1, :media_2, :tagline, :description
+  attributes :id, :name, :noise_level, :profile_photo, :genres, :media_1, :media_2, :tagline, :description, :lat, :long
 
   def name
     object.name.upcase

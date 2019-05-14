@@ -1,5 +1,5 @@
 class VenueSearchSerializer < ActiveModel::Serializer
-  attributes :id, :name, :noise_level, :genres
+  attributes :id, :name, :noise_level, :genres, :lat, :long
 
   def genres
     selected = Venuegenre.where(venue_id: object.id).pluck(:genre_id)

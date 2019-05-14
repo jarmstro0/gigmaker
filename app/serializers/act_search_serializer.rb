@@ -1,5 +1,5 @@
 class ActSearchSerializer < ActiveModel::Serializer
-  attributes :id, :name, :noise_level, :genres
+  attributes :id, :name, :noise_level, :genres, :lat, :long
 
   def genres
     selected = Actgenre.where(act_id: object.id).pluck(:genre_id)

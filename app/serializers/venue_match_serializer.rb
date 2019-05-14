@@ -1,5 +1,5 @@
 class VenueMatchSerializer < ActiveModel::Serializer
-  attributes :id, :name, :address_1, :address_2, :city, :state, :zip, :capacity, :noise_level, :profile_photo, :genres
+  attributes :id, :name, :address_1, :address_2, :city, :state, :zip, :capacity, :noise_level, :profile_photo, :genres, :lat, :long
 
   def name
     object.name.upcase

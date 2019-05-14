@@ -71,13 +71,15 @@ class HomeContainer extends React.Component {
         )
       })
 
+      let displayDate = moment(this.state.date).format("dddd, MMM D")
+
     return(
       <div className="grid-y medium-grid-frame">
         <div className="cell shrink header medium-cell-block-container">
           <div className="grid-x grid-padding-x">
             <div className="cell small-3">
               <div className="short-field">
-                <DateTimeField date={ this.state.date} handleChangeMethod={ this.onDateChange} />
+                <DateTimeField date={this.state.date} handleChangeMethod={ this.onDateChange} />
               </div>
             </div>
             <div className="cell small-8">
@@ -90,12 +92,9 @@ class HomeContainer extends React.Component {
             <div className="cell medium-3 medium-cell-block-y">
             </div>
             <div className="cell medium-6 medium-cell-block-y">
-              <h2>Today's Gigs</h2> {gig_list}
+              <h2>{displayDate}</h2> {gig_list}
             </div>
           </div>
-        </div>
-        <div className="cell shrink footer">
-          <h3>Here's my footer</h3>
         </div>
       </div>
     )

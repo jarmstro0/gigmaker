@@ -99,3 +99,114 @@ travel_radius: "250",
 noise_level: "11",
 user_id: 10
 )
+
+
+Venue.create(
+  name: "John's Hizzang",
+  address_1: "86 Oxford St",
+  city:  "Cambridge",
+  state:  "MA",
+  zip:  "02138",
+  capacity: Faker::Number.between(1, 8)*5,
+  noise_level: "11",
+  user_id: 11
+)
+
+Venue.create(
+  name: "Scout's Garage",
+  address_1: "60 Glen Rd",
+  city:  "Brookline",
+  state:  "MA",
+  zip:  "02445",
+  capacity: Faker::Number.between(1, 8)*5,
+  noise_level: "11",
+  user_id: 12
+)
+
+Venue.create(
+  name: "Stately Wayne Manor",
+  address_1: "60 Quissett Ave",
+  city:  "Woods Hole",
+  state:  "MA",
+  zip:  "02543",
+  capacity: Faker::Number.between(1, 8)*5,
+  noise_level: "Quiet",
+  user_id: 13
+)
+
+Venue.create(
+  name: "Earl's Garage",
+  address_1: "13 Harrison St",
+  city:  "Somerville",
+  state:  "MA",
+  zip:  "02143",
+  capacity: Faker::Number.between(1, 8)*5,
+  noise_level: "Loud",
+  user_id: 14
+)
+
+Venue.create(
+  name: "Chris' Crib",
+  address_1: "91 Prentiss St",
+  city:  "Cambridge",
+  state:  "MA",
+  zip:  "02140",
+  capacity: Faker::Number.between(1, 8)*5,
+  noise_level: "Moderate",
+  user_id: 15
+)
+
+Venue.create(
+  name: "Kweiliegh's House",
+  address_1: "120 Oxford St",
+  city:  "Cambridge",
+  state:  "MA",
+  zip:  "02140",
+  capacity: Faker::Number.between(1, 8)*5,
+  noise_level: "Moderate",
+  user_id: 16
+)
+
+Venue.create(
+  name: "The Abbey",
+  address_1: "1755 Massachusetts Ave",
+  city:  "Cambridge",
+  state:  "MA",
+  zip:  "02140",
+  capacity: Faker::Number.between(1, 8)*5,
+  noise_level: "Quiet",
+  user_id: 17
+)
+
+Venue.create(
+  name: "Danya's Dungeon",
+  address_1: "88 Waltham St",
+  city:  "Boston",
+  state:  "MA",
+  zip:  "02118",
+  capacity: Faker::Number.between(1, 8)*5,
+  noise_level: "Moderate",
+  user_id: 18
+)
+
+Venue.create(
+  name: "7Deck7",
+  address_1: "77 Summer St",
+  city:  "Boston",
+  state:  "MA",
+  zip:  "02111",
+  capacity: Faker::Number.between(1, 8)*5,
+  noise_level: "11",
+  user_id: 19
+)
+
+Venue.create(
+  name: "Argosy Gallery",
+  address_1: "110 Main St",
+  city:  "Bar Harbor",
+  state:  "ME",
+  zip:  "04609",
+  capacity: Faker::Number.between(1, 8)*5,
+  noise_level: "11",
+  user_id: 20
+)
