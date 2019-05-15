@@ -1,10 +1,14 @@
-<div class="grid-x white_out">
-  <div class="cell small-2"></div>
+<div class="grid-x">
+  <div class="cell small-3"> </div>
   <div class="cell small-4">
+    <br/>
+    <h4>Set Up Your Venue</h4>
+  </div>
+</div>
 
-<br/>
-<h4>Set Up A Venue</h4>
-
+<div class="grid-x">
+  <div class="cell small-3"></div>
+  <div class="cell small-4">
 <%= form_for @venue do |f| %>
 
   <div class="field short-field">
@@ -44,21 +48,31 @@
     <%= f.select(:noise_level,[
       ['Quiet', 'Quiet'],
       ['Reasonable', 'Reasonable'],
-      ['Loud', 'Loud']])  %>
+      ['Loud', 'Loud'],
+      ['11', '11']])  %>
   </div>
 
   <div class="field med-field">
     <%= f.label "Add a Photo"%>
     <%= f.file_field :profile_photo %>
   </div>
-
-  <div class="actions">
-    <%= f.submit "All Done!" %>
-  </div>
-<% end %>
-
 </div>
 
+  <div class="cell small-5">
+    <%= f.label "Genres - pick all that apply" %>
+    <div>
+      <%= f.collection_check_boxes(:venuegenres, Genrelut.all, :id, :genre_name) do |b| %>
+        <%= b.label(class: "check_box") do %>
+            <%= b.check_box(class: "check_box") %>
+            <%= b.object.genre_name %>
+        <% end %>
+      <% end %>
+    </div>
 
-<div class="cell small-2"></div>
+    <div class="actions">
+      <%= f.submit "All Done!" %>
+    </div>
+  <% end %>
+  </div>
+
 </div>

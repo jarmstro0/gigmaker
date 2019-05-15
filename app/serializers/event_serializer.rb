@@ -7,7 +7,9 @@ class EventSerializer < ActiveModel::Serializer
 
 
   def event_name
-    object.event_name.upcase
+    if object.event_name
+      object.event_name.upcase
+    end
   end
 
   def time

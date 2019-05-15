@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_07_222735) do
+ActiveRecord::Schema.define(version: 2019_05_14_170304) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "actgenres", force: :cascade do |t|
+    t.integer "genre_id", null: false
+    t.bigint "act_id"
+    t.index ["act_id"], name: "index_actgenres_on_act_id"
+  end
 
   create_table "acts", force: :cascade do |t|
     t.string "name", null: false
@@ -26,6 +32,10 @@ ActiveRecord::Schema.define(version: 2019_05_07_222735) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "profile_photo"
+    t.string "media_1"
+    t.string "media_2"
+    t.float "lat"
+    t.float "long"
     t.index ["user_id"], name: "index_acts_on_user_id"
   end
 
@@ -43,13 +53,8 @@ ActiveRecord::Schema.define(version: 2019_05_07_222735) do
     t.index ["venue_id"], name: "index_events_on_venue_id"
   end
 
-  create_table "genres", force: :cascade do |t|
-    t.string "genre", null: false
-    t.boolean "is_primary"
-    t.bigint "venue_id"
-    t.bigint "act_id"
-    t.index ["act_id"], name: "index_genres_on_act_id"
-    t.index ["venue_id"], name: "index_genres_on_venue_id"
+  create_table "genreluts", force: :cascade do |t|
+    t.string "genre_name", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -63,12 +68,16 @@ ActiveRecord::Schema.define(version: 2019_05_07_222735) do
     t.string "username", null: false
     t.string "first_name", null: false
     t.string "last_name", null: false
-    t.integer "act_id"
-    t.integer "venue_id"
     t.boolean "is_host", default: false
     t.boolean "is_act", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "venuegenres", force: :cascade do |t|
+    t.integer "genre_id", null: false
+    t.bigint "venue_id"
+    t.index ["venue_id"], name: "index_venuegenres_on_venue_id"
   end
 
   create_table "venues", force: :cascade do |t|

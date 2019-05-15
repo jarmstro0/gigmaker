@@ -1,5 +1,6 @@
 import React from 'react';
 
+import DateTimeField from './DateTimeField'
 import GigTile from './GigTile'
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
@@ -10,13 +11,21 @@ class HomeContainer extends React.Component {
     super(props);
     this.state = {
       gigs: [],
-      date: new Date()
+      date: moment().format("YYYY-MM-DD")
     }
-    this.handleChange = this.handleChange.bind(this)
+    this.onDateChange = this.onDateChange.bind(this)
+    this.fetchData = this.fetchData.bind(this)
   }
 
   componentDidMount() {
-    fetch(`/api/v1/gigs?date=${this.state.date}`)
+    this.fetchData(this.state.date)
+    console.log("did mount")
+  }
+
+  fetchData(fetchDate) {
+    console.log("fetch")
+    console.log(fetchDate)
+    fetch(`/api/v1/gigs?date=${fetchDate}`)
     .then(response => {
       if (response.ok) {
         return response;
@@ -33,19 +42,20 @@ class HomeContainer extends React.Component {
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
-  handleChange(date) {
-    console.log(date)
-
+  onDateChange(event) {
+    let new_date = event.target.value
     this.setState({
-      startDate: date["_i"]
+      date: new_date
     });
-    console.log(this.state.startDate)
+    console.log("date change pre-fetch")
+    this.fetchData(new_date)
   }
 
-
   render(){
+    console.log("render")
+    console.log(this.state.date)
     let gig_list = this.state.gigs.map((gig) => {
-
+      console.log("state valid")
         return (
           <GigTile
             key = {gig.id}
@@ -61,36 +71,32 @@ class HomeContainer extends React.Component {
         )
       })
 
+      let displayDate = moment(this.state.date).format("dddd, MMM D")
+
     return(
       <div className="grid-y medium-grid-frame">
-    <div className="cell shrink header medium-cell-block-container">
-      <div className="grid-x grid-padding-x">
-        <div className="cell small-4">
-          <DatePicker
-          selected={moment(this.state.date)}
-          onChange={this.handleChange}
-          />
+        <div className="cell shrink header medium-cell-block-container">
+          <div className="grid-x grid-padding-x">
+            <div className="cell small-3">
+              <div className="short-field">
+                <DateTimeField date={this.state.date} handleChangeMethod={ this.onDateChange} />
+              </div>
+            </div>
+            <div className="cell small-8">
+              <p></p>
+            </div>
+          </div>
         </div>
-        <div className="cell small-8">
-          <p>A medium 8 cell block... on medium this content should overflow and let you horizontally scroll across... one might use this for an array of options</p>
+        <div className="cell medium-auto medium-cell-block-container">
+          <div className="grid-x grid-padding-x">
+            <div className="cell medium-3 medium-cell-block-y">
+            </div>
+            <div className="cell medium-6 medium-cell-block-y">
+              <h2>{displayDate}</h2> {gig_list}
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div className="cell medium-auto medium-cell-block-container">
-      <div className="grid-x grid-padding-x">
-        <div className="cell medium-4 medium-cell-block-y">
-          <h2>Independent scrolling sidebar</h2>
-        </div>
-        <div className="cell medium-6 medium-cell-block-y">
-          <h2>Independent scrolling body</h2>
-          {gig_list}
-        </div>
-      </div>
-    </div>
-    <div className="cell shrink footer">
-      <h3>Here's my footer</h3>
-    </div>
-  </div>
     )
   }
 }

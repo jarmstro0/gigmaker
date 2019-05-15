@@ -11,6 +11,7 @@ class ActsController < ApplicationController
 
   def new
     @act = Act.new
+    @genres = Genrelut.all
   end
 
   def create
@@ -18,7 +19,13 @@ class ActsController < ApplicationController
     new_act.user_id = current_user.id
 
     if new_act.save
-      flash[:notice] = "Act created successfully"
+      params[:act][:actgenres].each do |gen|
+        load_value = gen.to_i
+        if load_value > 0
+          Actgenre.create(act_id: new_act.id, genre_id: load_value)
+        end
+      end
+      flash.now[:notice] = "Act created successfully"
       redirect_to '/'
     else
       flash.now[:error] = new_ven.errors.full_messages.join(", ")
@@ -30,7 +37,7 @@ class ActsController < ApplicationController
 
   def act_params
     params.require(:act).permit(:name, :tagline, :description, :travel_radius,
-      :profile_photo, :home_zip, :noise_level)
+      :profile_photo, :home_zip, :noise_level, :media_1, :media_2)
   end
 
   def authorize_user

@@ -11,12 +11,11 @@ const GigTile = props => {
   return(
     <div className="card">
       <div className="card-divider text-center">
-        <h3>{props.name}</h3>
-      </div>
-      <img src={props.photo}/>
-      <div className="card-section text-center">
         <h3>{props.act}</h3>
-        <h5>at {props.venue}</h5>
+      </div>
+      <img className="gig-size" src={props.photo}/>
+      <div className="card-section text-center">
+        <h3>at {props.venue}</h3>
         <p>{props.date}, {props.time} - {tickets}</p>
       </div>
     </div>

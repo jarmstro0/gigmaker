@@ -14,22 +14,28 @@
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
 </head>
 
 <body>
   <div class="top-bar">
     <div class="top-bar-left">
-      <ul class="dropdown menu">
-        <div className = "logo">
-          <li class="menu-text">GigMaker</li>
-        </div>
-        <li><a href="/stops">Lines</a></li>
-      </ul>
-    </div>
+    <ul class="dropdown menu">
+      <li><a href="/" class="menu-text">GigMaker</a></li>
+        <li><a href="/acts">Browse Acts</a></li>
+        <% if user_signed_in? %>
+        <% if current_user.is_host? || current_user.is_act? %>
+          <li><a href="/matcher">Matcher</a></li>
+        <% end %>
+        <% end %>
+    </ul>
+  </div>
+
     <div class="top-bar-right">
-      <ul class="menu">
+      <ul class="menu top-bar-text">
         <%- if current_user -%>
         <li>
           <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
@@ -46,11 +52,17 @@
     </div>
   </div>
 
-  <%- flash.each do |key, value| -%>
-  <div class="flash flash-<%= key %>">
-    <%= value %>
-  </div>
-  <%- end -%>
+  <% if flash %>
+    <div class="grid-x">
+      <div class="cell">
+        <%- flash.each do |key, value| -%>
+        <div class="flash flash-<%= key %>">
+          <%= value %>
+        </div>
+        <%- end -%>
+      </div>
+    </div>
+  <% end %>
 
 <%= yield %>
 
@@ -64,5 +76,8 @@
 
   <%= javascript_pack_tag 'application' %>
   <%= yield :extra_footer %>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_MAPS_API_KEY"] %>"></script>
+
 </body>
 </html>
