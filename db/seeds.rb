@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-require 'pry'
+
 require 'faker'
 to_make = 10
 
@@ -138,26 +138,6 @@ to_make.times do
     last_name: "#{Faker::Name.last_name}",
     is_host: true
   )
-
-  # house_names = ["Hizzle", "Garage", "Joint", "Crib"]
-  # name_select = house_names[Faker::Number.between(0, 3)]
-  #
-  # zip_core = Faker::Number.between(2122, 2543)
-  # zip = "0"+zip_core.to_s
-  #
-  # noise = ["Quiet", "Reasonable", "Loud", "11"]
-  # noise_select = noise[Faker::Number.between(0, 3)]
-  #
-  # venue = Venue.create(
-  #   user_id: user.id,
-  #   name: "#{user.first_name}'s #{name_select}",
-  #   address_1: "#{Faker::Address.street_address}",
-  #   city: "#{Faker::Address.city}",
-  #   state: "MA",
-  #   zip: zip,
-  #   capacity: Faker::Number.between(1, 8)*5,
-  #   noise_level: noise_select
-  # )
 
 end
 
