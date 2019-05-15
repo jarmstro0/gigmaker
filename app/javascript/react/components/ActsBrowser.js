@@ -50,6 +50,7 @@ class ActsBrowser extends React.Component {
 
     return(
       <div>
+
         <div className="grid-x">
           <div className="cell"></div>
         </div>

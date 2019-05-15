@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :acts, only: [:index]
-      resources :gigs, only: [:index, :show]
+      resources :gigs, only: [:index, :show, :create]
       get 'matcher/venues', to: 'matcher#venues'
       get 'matcher/acts', to: 'matcher#acts'
     end

@@ -6,7 +6,7 @@ class ActMatchSerializer < ActiveModel::Serializer
   end
 
   def genres
-    selected = Actgenre.where(act_id: object.id).pluck(:genre_id)
+    selected = Actgenre.where(act_id: object.id).distinct.pluck(:genre_id)
     genres = []
     selected.each do |item|
       genres.push(Genrelut.find(item).genre_name)

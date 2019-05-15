@@ -10,6 +10,10 @@
   width: 4rem;
 }
 
+.small-field {
+  width: 10rem;
+}
+
 .short-field {
   width: 12rem;
 }
@@ -32,19 +36,19 @@
 }
 
 .prop-box-right {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   text-align: right;
   width: 100%;
   margin-top: 1rem;
 }
 
 .prop-box {
-  font-size: 1.5rem;
+  font-size: 1rem;
   text-align: left;
-  width: 100%
-  padding: 1rem;
+  width: 50%;
+  padding: 4px;
   vertical-align: middle;
-  margin-top: 1rem;
+  margin-top: 5px;
 }
 
 .top-marg {
@@ -57,8 +61,10 @@
 }
 
 .matcher-pix {
-  height: 290px;
+  height: 300px;
   width: auto;
+  margin-left: .5rem;
+  margin-right: .5rem;
 }
 
 .gen-red {
@@ -90,6 +96,20 @@
 }
 
 .map-box {
-  height: 300px;
-  width: 300px;
+  height: 20rem;
+  width: 25rem;
+}
+
+.icon-orange {
+  color: #FF7340;
+}
+
+.flex-to-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.flex-to-row {
+  display: flex;
+  flex-direction: row;
 }

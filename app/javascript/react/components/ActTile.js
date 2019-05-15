@@ -30,7 +30,7 @@ const ActTile = props => {
         height = {height} />
 
       </div>
-      <div className="card-section black-back"></div>
+      <div className="card-section gen-red"></div>
     </div>
     </div>
   )

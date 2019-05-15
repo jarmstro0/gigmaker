@@ -2,7 +2,7 @@ import React from 'react'
 
 const PropTile = props => {
   return(
-    <div className="gen-red">
+    <div>
     <span className="prop-box"><p>{props.name}</p></span>
     </div>
   )

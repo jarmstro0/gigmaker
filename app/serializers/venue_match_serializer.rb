@@ -6,7 +6,7 @@ class VenueMatchSerializer < ActiveModel::Serializer
   end
 
   def genres
-    selected = Venuegenre.where(venue_id: object.id).pluck(:genre_id)
+    selected = Venuegenre.where(venue_id: object.id).distinct.pluck(:genre_id)
     genres = []
     selected.each do |item|
       genres.push(Genrelut.find(item).genre_name)

@@ -9,8 +9,8 @@ class MapContainer extends React.Component {
     let map
     let initMap = () => {
       map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: -34.397, lng: 150.644},
-        zoom: 8
+        center: {lat: this.props.lat, lng: this.props.long},
+        zoom: 15
       })
     }
 
@@ -20,7 +20,7 @@ class MapContainer extends React.Component {
 
   render(){
     return(
-      <div id="map" className="map-box">Hello</div>
+      <div id="map" className="map-box"></div>
     )
   }
 }
