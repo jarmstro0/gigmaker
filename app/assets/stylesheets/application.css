@@ -15,13 +15,3 @@
  *= require foundation_and_overrides
 
  */
-
-
- .white_out{
-  width: 100%;
-  height: 100%;
-  background-color: #ffffffb8;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-}

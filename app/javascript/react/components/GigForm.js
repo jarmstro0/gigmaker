@@ -40,30 +40,31 @@ class GigForm extends React.Component {
   }
 
   render(){
+    let showDate = moment(this.props.date).format("MMMM D")
+
     let format = 'h:mm p';
     let now = moment().hour(0).minute(0);
 
     return(
-      <div>
-        <p className="close">{this.props.actName} at</p>
-        <p className="close">{this.props.venueName} on </p>
-        <p className="close">{this.props.date} at</p>
+      <div className="gig-form">
+        <p className="tight"><b>{this.props.actName}</b> at</p>
+        <p className="tight"><b>{this.props.venueName}</b> on </p>
+        <p className="tight"><b>{showDate}</b> at</p>
 
-          <label>Time:
+          <label>Time:<br/>
             <TimePicker
               showSecond={false}
               defaultValue={now}
-              className="small-field"
+              className="short-field"
               onChange={this.onTimeChange}
               format={format}
               use12Hours
-              inputReadOnly
             />
           </label>
 
           <div className="tiny-field close">
             <label>Admission:
-              <input name="price" type='text'  onChange={this.handleChangeMethod} />
+              <input placeholder="$" name="price" type='text'  onChange={this.handleChangeMethod} />
             </label>
           </div>
 

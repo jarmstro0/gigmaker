@@ -47,18 +47,15 @@ class HomeContainer extends React.Component {
     this.setState({
       date: new_date
     });
-    console.log("date change pre-fetch")
     this.fetchData(new_date)
   }
 
   render(){
-    console.log("render")
-    console.log(this.state.date)
     let gig_list = this.state.gigs.map((gig) => {
-      console.log("state valid")
         return (
           <GigTile
             key = {gig.id}
+            id = {gig.id}
             name = {gig.event_name}
             act = {gig.act_name}
             venue = {gig.venue_name}
@@ -83,7 +80,7 @@ class HomeContainer extends React.Component {
               </div>
             </div>
             <div className="cell small-8">
-              <p></p>
+              <br/><h3>{displayDate}</h3>
             </div>
           </div>
         </div>
@@ -92,7 +89,7 @@ class HomeContainer extends React.Component {
             <div className="cell medium-3 medium-cell-block-y">
             </div>
             <div className="cell medium-6 medium-cell-block-y">
-              <h2>{displayDate}</h2> {gig_list}
+               {gig_list}
             </div>
           </div>
         </div>

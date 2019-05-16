@@ -1,6 +1,7 @@
 import React from 'react'
 
 const GigTile = props => {
+  let link = `/gigs/${props.id}`
   let tickets
   if (props.tix == 0) {
     tickets = "Free"
@@ -9,6 +10,7 @@ const GigTile = props => {
   }
 
   return(
+    <a href={link}>
     <div className="card">
       <div className="card-divider text-center">
         <h3>{props.act}</h3>
@@ -19,6 +21,7 @@ const GigTile = props => {
         <p>{props.date}, {props.time} - {tickets}</p>
       </div>
     </div>
+    </a>
   )
 }
 

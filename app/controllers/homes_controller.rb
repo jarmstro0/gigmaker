@@ -3,4 +3,7 @@ class HomesController < ApplicationController
     render "static_views/index"
   end
 
+  def show
+    render "static_views/index"
+  end
 end

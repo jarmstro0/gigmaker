@@ -2,7 +2,6 @@ import React from 'react';
 import moment from 'moment'
 
 import PropTile from './PropTile'
-import MapContainer from './MapContainer'
 import Calendar from 'react-calendar'
 import MediaTile from './MediaTile'
 import GigForm from './GigForm'
@@ -106,15 +105,6 @@ class ActContainer extends React.Component {
         throw(error);
       }
     })
-    .then(response => response.json())
-    .then(body => {
-      console.log(body)
-      this.setState({
-        stop: body.stop,
-        reviews: body.reviews,
-        errors: body.errors
-      })
-    })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
@@ -122,6 +112,7 @@ class ActContainer extends React.Component {
     let name, photo, volume, tag, desc
     let genTiles, state, capacity, genres
     let medOne, medTwo, songOne, songTwo
+    let venueNameUC
 
     let mediaWidth = "95%"
     let mediaHeight = "150"
@@ -134,6 +125,8 @@ class ActContainer extends React.Component {
       medOne = displayed.media_1
       medTwo = displayed.media_2
       desc = displayed.description
+
+      venueNameUC = this.state.searcher.name.toUpperCase()
 
       volume = <PropTile
                   name = {displayed.noise_level}
@@ -176,17 +169,14 @@ class ActContainer extends React.Component {
 
     return(
       <span>
-
         <div className="grid-x grid-padding-x grid-padding-y">
-          <div className="cell small-7 align-center text-center">
+          <div className="cell small-8 medium-7 align-center text-center">
             <i onClick={this.clickDown} className="fas fa-caret-left fa-6x icon-orange" />
             <img className="matcher-pix" src={photo} />
             <i onClick={this.clickUp} className="fas fa-caret-right fa-6x icon-orange" />
             <br/>
             <br/>
-
             <h3> {name} </h3>
-
             <div className="grid-x grid-padding-x">
               <div className="cell small-1"></div>
               <div className="cell small-10">
@@ -201,7 +191,7 @@ class ActContainer extends React.Component {
 
 
 
-        <div className="cell small-4">
+        <div className="cell small-4 medium-3">
           <Calendar onChange={ this.calendarChange} value={ this.state.today}/>
           <br/><br/>
           {!this.state.showForm &&
@@ -212,8 +202,8 @@ class ActContainer extends React.Component {
           {this.state.showForm &&
             <GigForm
             actName = {name}
-            venueName = {this.state.searcher.name}
-            date = {moment(this.state.date).format("MMMM D")}
+            venueName = {venueNameUC}
+            date = {this.state.date}
             onFormSubmit = {this.createNewGig}
             />
           }

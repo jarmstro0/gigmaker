@@ -109,15 +109,6 @@ class VenueContainer extends React.Component {
         throw(error);
       }
     })
-    .then(response => response.json())
-    .then(body => {
-      console.log(body)
-      this.setState({
-        stop: body.stop,
-        reviews: body.reviews,
-        errors: body.errors
-      })
-    })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
@@ -129,7 +120,7 @@ class VenueContainer extends React.Component {
 
     let displayed = this.state.matches[this.state.selected]
     if (this.state.selected !== null) {
-      name = displayed.name
+      name = displayed.name.toUpperCase()
       photo = displayed.profile_photo.url
       city = displayed.city
       state = displayed.state
@@ -158,49 +149,49 @@ class VenueContainer extends React.Component {
     return(
         <span>
 
-          <div className="grid-x gm-banner grid-padding-y">
-            <div className="cell small-4"></div>
-            <div className="cell small-7 text-center"></div>
-          </div>
-
           <div className="grid-x grid-padding-x grid-padding-y">
-            <div className="cell small-4 flex-to-right">
-              <Calendar onChange={ this.calendarChange} value={ this.state.today}/>
-            </div>
-            <div className="cell small-7 align-center">
+            <div className="cell small-8 medium-7 align-center text-center">
               <i onClick={this.clickDown} className="fas fa-caret-left fa-6x icon-orange" />
               <img className="matcher-pix" src={photo} />
               <i onClick={this.clickUp} className="fas fa-caret-right fa-6x icon-orange" />
+              <br/>
+              <br/>
+              <h3> {name} </h3>
+              <div className="grid-x grid-padding-x grid-padding-y">
+                <div className="cell small-3 text-right">
+                {city}, {state}<br/>
+                Capacity: {capacity}
+                </div>
+                <div className="cell small-8 text-right">
+                  {showMap}
+                </div>
+              </div>
             </div>
-          </div>
 
-          <div className="grid-x grid-padding-x">
-            <div className="cell small-4 medium-4">
-            <button onClick={this.toggleGigForm} type="button" className="button large medium-down-expanded">
+          <div className="cell small-4 medium-3">
+            <Calendar onChange={ this.calendarChange} value={ this.state.today}/>
+            <br/><br/>
+            {!this.state.showForm &&
+              <button onClick={this.toggleGigForm} type="button" className="button large medium-down-expanded">
             Make That Gig
-            </button>
+            </button>}
+
             {this.state.showForm &&
               <GigForm
               actName = {this.state.searcher.name}
               venueName = {name}
-              date = {moment(this.state.date).format("MMMM D")}
+              date = {this.state.date}
               onFormSubmit = {this.createNewGig}
               />
             }
-            </div>
-            <div className="cell small-2">
-              <p className="prop-box">Capacity: {capacity}</p>
-              <p className="prop-box">Volume: {volume}</p>
-              {genTiles}
-            </div>
-            <div className="cell small-5 top-marg">
-              <h4> {name} </h4>
-              {city}, {state}
-              <div>
-                {showMap}
-              </div>
-            </div>
           </div>
+
+
+          </div>
+
+
+
+
 
     </span>
     )

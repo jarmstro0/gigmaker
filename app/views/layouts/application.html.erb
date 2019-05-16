@@ -23,15 +23,15 @@
 <body>
   <div class="top-bar">
     <div class="top-bar-left">
-    <ul class="dropdown menu">
+      <ul class="menu top-bar-text"
       <li><a href="/" class="menu-text">GigMaker</a></li>
-        <li><a href="/acts">Browse Acts</a></li>
+      <a href="/acts">Browse Acts</a>
         <% if user_signed_in? %>
         <% if current_user.is_host? || current_user.is_act? %>
           <li><a href="/matcher">Matcher</a></li>
         <% end %>
         <% end %>
-    </ul>
+</ul>
   </div>
 
     <div class="top-bar-right">
