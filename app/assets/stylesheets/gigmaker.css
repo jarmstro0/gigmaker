@@ -26,13 +26,23 @@
   line-height: .5;
 }
 
+.tight {
+  line-height: .75;
+}
+
 .menu-text {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   font-weight: bold;
+  line-height: .8 !important;
 }
 
 .top-bar-text {
   font-size: 1.1rem;
+}
+
+.top-bar {
+  display: flex;
+  align-items: baseline;
 }
 
 .prop-box-right {
@@ -65,6 +75,9 @@
   width: auto;
   margin-left: .5rem;
   margin-right: .5rem;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 15px;
 }
 
 .gen-red {
@@ -73,7 +86,7 @@
 }
 
 .gen-green {
-  background-color: #24EDC5;
+  background-color: #00A181;
 }
 
 .gig-size {
@@ -96,8 +109,8 @@
 }
 
 .map-box {
-  height: 20rem;
-  width: 25rem;
+  height: 15rem;
+  width: 26rem;
 }
 
 .icon-orange {
@@ -112,4 +125,14 @@
 .flex-to-row {
   display: flex;
   flex-direction: row;
+}
+
+.gig-form {
+  padding-left: 10px !important;
+  padding-top: 15px !important;
+  width: 350px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #a0a096;
+  border-radius: 15px
 }

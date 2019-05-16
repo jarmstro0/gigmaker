@@ -49,14 +49,20 @@ class ActsBrowser extends React.Component {
     })
 
     return(
-      <div>
-
-        <div className="grid-x">
-          <div className="cell"></div>
+      <div className="grid-y medium-grid-frame">
+        <div className="cell shrink header medium-cell-block-container">
+          <div className="grid-x grid-padding-x">
+            <div className="cell small-3"></div>
+            <div className="cell small-6"><p/></div>
+          </div>
         </div>
-        <div className="grid-x grid-padding-y">
-          <div className="cell small-3"></div>
-          <div className="cell small-7">{actTileSet}</div>
+        <div className="cell medium-auto medium-cell-block-container">
+          <div className="grid-x grid-padding-x">
+            <div className="cell medium-3 medium-cell-block-y"></div>
+            <div className="cell medium-6 medium-cell-block-y">
+              {actTileSet}
+            </div>
+          </div>
         </div>
       </div>
     )

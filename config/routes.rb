@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   get 'matcher/acts', to: 'matcher#acts'
   get 'matcher/venues', to: 'matcher#venues'
+  get 'gigs/:id', to: 'homes#show'
 
   namespace :api do
     namespace :v1 do

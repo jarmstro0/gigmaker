@@ -8,6 +8,8 @@ def index
 end
 
 def show
+  events = Event.find(params[:id])
+  render json: events
 end
 
 def create

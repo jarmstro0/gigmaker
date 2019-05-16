@@ -65,9 +65,9 @@ user_id: 3
 )
 
 Act.create(
-name: "Moist Amphibians",
-tagline: "The name says it all",
-description: "We perform exclusively in terreria and other humid environments. Our sound has been described as damp and sticky with scaly elements that can make your eyeballs swivel independently in many directions.",
+name: "Scarecrow Boat",
+tagline: "Yacht rock for a new generation",
+description: "We got our start as the backup band for Keytar Bear and our musical journey has since taken us on busking tours of T stations throughout the greater Boston area. Our unique blend of Gamelan and Emo/Shoegaze influences will get you on your feet and moving!",
 home_zip: "02138",
 travel_radius: "45",
 noise_level: "Reasonable",
