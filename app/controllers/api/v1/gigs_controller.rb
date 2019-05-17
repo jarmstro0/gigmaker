@@ -1,21 +1,17 @@
 class Api::V1::GigsController < ApplicationController
 
 def index
-  puts params[:date]
-  events = Event.where(date: params[:date])
-  puts events
-  render json: events
+  render json: Event.where(date: params[:date])
 end
 
 def show
-  events = Event.find(params[:id])
-  render json: events
+  render json: Event.find(params[:id])
 end
 
 def create
   new_gig = Event.new(gig_params)
   if new_gig.save
-    redirect_to '/'
+    render json: new_gig.id
   else
     flash.now[:error] = new_gig.errors.full_messages.join(", ")
     render action: :new

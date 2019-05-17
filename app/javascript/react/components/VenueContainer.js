@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment'
+import {Route, Redirect, browserHistory} from 'react-router'
 
 import PropTile from './PropTile'
 import MapContainer from './MapContainer'
@@ -29,7 +30,6 @@ class VenueContainer extends React.Component {
   }
 
   componentDidMount() {
-    console.log("mount")
     this.fetchActs(this.state.date)
   }
 
@@ -46,8 +46,6 @@ class VenueContainer extends React.Component {
     })
     .then(response => response.json())
     .then(body => {
-      console.log(body)
-
       this.setState({
         matches: body.venuematch,
         searcher: body.act_search[0],
@@ -109,12 +107,15 @@ class VenueContainer extends React.Component {
         throw(error);
       }
     })
+    .then(response => response.json())
+    .then(body => {
+      browserHistory.push(`/gigs/${body}`)
+    })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
 
   render(){
-    console.log("render")
     let name, photo, volume, city, state, id
     let capacity, genTiles, genres, showMap
 
@@ -150,6 +151,7 @@ class VenueContainer extends React.Component {
         <span>
 
           <div className="grid-x grid-padding-x grid-padding-y">
+          <div className="cell small-1"></div>
             <div className="cell small-8 medium-7 align-center text-center">
               <i onClick={this.clickDown} className="fas fa-caret-left fa-6x icon-orange" />
               <img className="matcher-pix" src={photo} />
@@ -157,12 +159,12 @@ class VenueContainer extends React.Component {
               <br/>
               <br/>
               <h3> {name} </h3>
-              <div className="grid-x grid-padding-x grid-padding-y">
+              <div className="grid-x grid-padding-x grid-padding-y align-center">
                 <div className="cell small-3 text-right">
                 {city}, {state}<br/>
                 Capacity: {capacity}
                 </div>
-                <div className="cell small-8 text-right">
+                <div className="cell small-8 text-left">
                   {showMap}
                 </div>
               </div>

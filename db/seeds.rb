@@ -143,7 +143,7 @@ end
 
 
 Venue.create(
-  name: "John's Hizzang",
+  name: "John's House",
   address_1: "86 Oxford St",
   city:  "Cambridge",
   state:  "MA",
@@ -220,7 +220,7 @@ Venue.create(
 )
 
 Venue.create(
-  name: "Danya's Dungeon",
+  name: "Mike's Livingroom",
   address_1: "88 Waltham St",
   city:  "Boston",
   state:  "MA",
@@ -254,12 +254,13 @@ Venue.create(
 
 
 200.times do
+  hour = Faker::Number.between(16, 21)
   Event.create(
     act_id: Faker::Number.between(1, to_make),
     venue_id: Faker::Number.between(1, to_make),
     tix_price: Faker::Number.between(0, 8) * 5,
-    date: Faker::Date.between(Date.today, 1.month.from_now),
-    start_time: Faker::Time.forward(5, :evening),
+    date: Faker::Date.between(2.days.ago, 1.month.from_now),
+    start_time: DateTime.new(2019, 2, 3, hour, 0, 0),
     event_name: "#{Faker::Marketing.buzzwords}"
   )
 end

@@ -18,7 +18,7 @@ const GigTile = props => {
       <img className="gig-size" src={props.photo}/>
       <div className="card-section text-center">
         <h3>at {props.venue}</h3>
-        <p>{props.date}, {props.time} - {tickets}</p>
+        <p>{props.time} - {tickets}</p>
       </div>
     </div>
     </a>
