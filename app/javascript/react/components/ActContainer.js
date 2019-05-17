@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment'
+import {Route, Redirect, browserHistory} from 'react-router'
 
 import PropTile from './PropTile'
 import Calendar from 'react-calendar'
@@ -79,6 +80,7 @@ class ActContainer extends React.Component {
   createNewGig(formPayload) {
     let price = parseInt(formPayload.tixPrice)
     let time = formPayload.time.format()
+    console.log(time)
 
     let postPayload = {
       act_id: this.state.matches[this.state.selected].id,
@@ -104,6 +106,10 @@ class ActContainer extends React.Component {
         error = new Error(errorMessage);
         throw(error);
       }
+    })
+    .then(response => response.json())
+    .then(body => {
+      browserHistory.push(`/gigs/${body}`)
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -170,7 +176,8 @@ class ActContainer extends React.Component {
     return(
       <span>
         <div className="grid-x grid-padding-x grid-padding-y">
-          <div className="cell small-8 medium-7 align-center text-center">
+          <div className="cell small-1"></div>
+          <div className="cell small-8 medium-6 align-center text-center">
             <i onClick={this.clickDown} className="fas fa-caret-left fa-6x icon-orange" />
             <img className="matcher-pix" src={photo} />
             <i onClick={this.clickUp} className="fas fa-caret-right fa-6x icon-orange" />
@@ -178,11 +185,10 @@ class ActContainer extends React.Component {
             <br/>
             <h3> {name} </h3>
             <div className="grid-x grid-padding-x">
-              <div className="cell small-1"></div>
-              <div className="cell small-10">
+              <div className="cell">
                 <h5>{tag}</h5>
                 <p>{desc}</p>
-                <div className="flex-to-row">
+                <div className="flex-to-row text-right">
                 {songOne} {songTwo}
                 </div>
               </div>

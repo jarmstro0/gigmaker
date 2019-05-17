@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'faker'
 
 feature 'user signs in', %Q{
   As a signed up user
@@ -6,10 +7,18 @@ feature 'user signs in', %Q{
   So that I can regain access to my account
 } do
   scenario 'specify valid credentials' do
-    user = FactoryBot.create(:user)
+    u_name = Faker::Alphanumeric.alpha 10
+    user = {
+      username: "#{u_name}",
+      email: "#{u_name}@happypath.com",
+      password: "password",
+      first_name: "#{Faker::Name.first_name}",
+      last_name: "#{Faker::Name.last_name}",
+      is_act: true
+    }
 
     visit new_user_session_path
-
+    fill_in 'Username', with: user.username
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
 
