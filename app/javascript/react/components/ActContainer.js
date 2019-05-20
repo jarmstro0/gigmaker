@@ -177,7 +177,7 @@ class ActContainer extends React.Component {
       <span>
         <div className="grid-x grid-padding-x grid-padding-y">
           <div className="cell small-1"></div>
-          <div className="cell small-8 medium-6 align-center text-center">
+          <div className="cell small-8 medium-7 align-center text-center">
             <i onClick={this.clickDown} className="fas fa-caret-left fa-6x icon-orange" />
             <img className="matcher-pix" src={photo} />
             <i onClick={this.clickUp} className="fas fa-caret-right fa-6x icon-orange" />
