@@ -47,7 +47,7 @@ class GigForm extends React.Component {
 
     return(
       <div className="gig-form">
-        <p className="tight"><b>{this.props.actName}</b> at</p>
+        <p><b>{this.props.actName}</b> at</p>
         <p className="tight"><b>{this.props.venueName}</b> on </p>
         <p className="tight"><b>{showDate}</b> at</p>
 
