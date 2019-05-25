@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'faker'
 
 feature 'user signs out', %Q{
   As an authenticated user
@@ -12,17 +13,16 @@ feature 'user signs out', %Q{
 
   scenario 'authenticated user signs out' do
     u_name = Faker::Alphanumeric.alpha 10
-    user = {
+    user = User.create!(
       username: "#{u_name}",
       email: "#{u_name}@happypath.com",
       password: "password",
       first_name: "#{Faker::Name.first_name}",
-      last_name: "#{Faker::Name.last_name}",
-      is_act: true
-    }
+      last_name: "#{Faker::Name.last_name}"
+    )
 
     visit new_user_session_path
-    fill_in 'Username', with: user.username
+
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
 
