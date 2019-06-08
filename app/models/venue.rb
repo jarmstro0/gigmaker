@@ -15,9 +15,9 @@ class Venue < ApplicationRecord
 
   after_validation :get_geo, on: [:create, :update]
 
-  def self.available_on(date)
-    where.not(id: Event.venue_busy_on(date))
-  end
+  scope :busy_on, ->(date) { joins(:events).where(events: {date: date}) }
+
+  scope :available_on, ->(date) {where.not(id: busy_on(date).select(:id))}
 
   def get_geo
     response = RestClient.get "https://maps.googleapis.com/maps/api/geocode/json?address=#{self.address_1}$components=postal_code:#{self.zip}&key=#{ENV['GOOGLE_MAPS_API_KEY']}"

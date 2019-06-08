@@ -11,9 +11,9 @@ class Act < ApplicationRecord
 
   after_validation :get_geo, on: [:create, :update]
 
-  def self.available_on(date)
-    where.not(id: Event.act_busy_on(date))
-  end
+  scope :busy_on, ->(date) { joins(:events).where(events: {date: date}) }
+
+  scope :available_on, ->(date) {where.not(id: busy_on(date).select(:id))}
 
   private
 
