@@ -11,7 +11,7 @@ class GigShow extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`/api/v1/gigs/${this.props.params.id}`)
+    fetch(`/api/v1/gigs/${this.props.match.params.id}`)
       .then(response => {
         if (response.ok) {
           return response;

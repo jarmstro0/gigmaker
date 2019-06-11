@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment'
-import {Route, Redirect, browserHistory} from 'react-router'
+import { Route, Redirect, BrowserRouter } from 'react-router-dom'
 
 import PropTile from './PropTile'
 import MapContainer from './MapContainer'
@@ -19,7 +19,8 @@ class VenueContainer extends React.Component {
       today: new Date(),
       showForm: false,
       gigTime: null,
-      tixPrice: null
+      tixPrice: null,
+      redirectTo: null
     }
     this.clickDown = this.clickDown.bind(this)
     this.clickUp = this.clickUp.bind(this)
@@ -109,13 +110,17 @@ class VenueContainer extends React.Component {
     })
     .then(response => response.json())
     .then(body => {
-      browserHistory.push(`/gigs/${body}`)
+      this.setState({redirectTo: `/gigs/${body}`})
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
 
   render(){
+    if (this.state.redirectTo !== null) {
+      return <Redirect to={this.state.redirectTo} />
+    }
+    
     let name, photo, volume, city, state, id
     let capacity, genTiles, genres, showMap
 
