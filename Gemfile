@@ -55,7 +55,7 @@ gem 'valid_attribute', group: [:development, :test]
 gem 'shoulda-matchers', group: [:development, :test], require: false
 gem 'devise'
 gem 'foundation-rails', '>= 6.5.3.0'
-gem 'webpacker', '~> 3.3'
+gem 'webpacker', '>=4.0.x'
 gem 'geocoder'
 gem 'active_model_serializers'
 gem 'faker'
