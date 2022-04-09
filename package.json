@@ -14,7 +14,7 @@
     "google-map-react": "^1.1.4",
     "js-yaml": "^3.13.1",
     "mini-css-extract-plugin": "^0.7.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "prop-types": "^15.7.2",
     "rc-time-picker": "2.4.0",
     "react": "^16.8.6",
